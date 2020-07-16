@@ -1,0 +1,25 @@
+{
+  "development": {
+    "username": "YFL_4",
+    "password": "rootROOT.",
+    "database": "TRAN_YFL_TEST",
+    "host": "59.129.224.45",
+    "port": "23316",
+    "dialect": "mariadb",
+    "dialectOptions": { "connectTimeout": 1000 }
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "TRAN_YFL_TEST",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "TRAN_YFL_TEST",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
