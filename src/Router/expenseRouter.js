@@ -24,7 +24,7 @@ expenseRouter.get("/:expenseId", (req, res, next) => {
 
 expenseRouter.get("/expenseConfirm/:expenseId", (req, res, next) => {
   console.log("経費の確認できましたしました。");
-  controller.unpdateExpenseConfirm(req, res, next);
+  controller.unpdateExpenseToConfirmed(req, res, next);
 });
 
 expenseRouter.get("/:employeeId/:month", (req, res, next) => {

@@ -55,24 +55,13 @@ module.exports = {
             next(err);
           }
           // return;
-          // deleteExpenseDataByExpenseId();
+          unpdateExpenseToReturned();
         }
       );
     };
 
-    updateExpenseDataToNoPass = () => {
-      service.updateExpenseDataToNoPass(expense_id, (err, results) => {
-        if (err) {
-          next(err);
-        }
-        res.json({
-          success: 1,
-        });
-      });
-    };
-
-    deleteExpenseDataByExpenseId = () => {
-      service.deleteExpenseDataByExpenseId(expense_id, (err, results) => {
+    unpdateExpenseToReturned = () => {
+      service.unpdateExpenseToReturned(expense_id, (err, results) => {
         if (err) {
           next(err);
         }
@@ -98,9 +87,9 @@ module.exports = {
     });
   },
 
-  unpdateExpenseConfirm: (req, res, next) => {
+  unpdateExpenseToConfirmed: (req, res, next) => {
     let { expenseId } = req.params;
-    service.unpdateExpenseConfirm(expenseId, (err, results) => {
+    service.unpdateExpenseToConfirmed(expenseId, (err, results) => {
       if (err) {
         next(err);
       }

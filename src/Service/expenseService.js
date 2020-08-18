@@ -141,14 +141,12 @@ module.exports = {
     };
   },
 
-  updateExpenseDataToNoPass: () => {},
-
   getEmployeeReportInfo: (callback) => {
     let year = moment().format("YYYY");
     let month = moment().month();
     let startTime = moment([year, month, 1]).format("YYYY-MM-DD");
     let endTime = moment([year, month, 10]).format("YYYY-MM-DD");
-
+    console.log(startTime, "から", endTime, "まで", "の情報を請求した");
     pool.query(
       SQL.getEmployeeReportInfo,
       [startTime, endTime],
@@ -164,8 +162,14 @@ module.exports = {
     });
   },
 
-  unpdateExpenseConfirm: (expenseId, callback) => {
-    pool.query(SQL.unpdateExpenseConfirm, [expenseId], (err, results) => {
+  unpdateExpenseToConfirmed: (expenseId, callback) => {
+    pool.query(SQL.unpdateExpenseToConfirmed, [expenseId], (err, results) => {
+      return callback(err, results);
+    });
+  },
+
+  unpdateExpenseToReturned: (expenseId, callback) => {
+    pool.query(SQL.unpdateExpenseToReturned, [expenseId], (err, results) => {
       return callback(err, results);
     });
   },
