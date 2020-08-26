@@ -57,6 +57,9 @@ module.exports = {
           token: jsontoken,
           firsuUser: results.firstUser,
           employee_id: results.employee_id,
+          family_name: results.family_name,
+          first_name: results.first_name,
+          email: results.email
         })
       } else {
         return res.json({
@@ -80,7 +83,14 @@ module.exports = {
           message: "Not Found"
         })
       }
-      return res.json({ success: 1, data: results })
+      return res.json({
+        success: 1, 
+        firsuUser: results.firstUser,
+        employee_id: results.employee_id,
+        family_name: results.family_name,
+        first_name: results.first_name,
+        email: results.email
+      })
     });
   },
   updateUser: (req, res) => {

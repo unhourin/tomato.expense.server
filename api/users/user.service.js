@@ -30,7 +30,9 @@ module.exports = {
     )
   },
   getUserByEmail: (email, callback) => {
-    pool.query(`select * from Users where email=?`, [email], (error, results, fields) => {
+    pool.query(`SELECT EmployeeList.employee_id,EmployeeList.family_name,EmployeeList.first_name,EmployeeList.id_photo,Users.employee_id,Users.email,Users.firstUser,Users.password
+    FROM EmployeeList, Users
+    WHERE EmployeeList.employee_id = Users.employee_id AND Users.email = ?`, [email], (error, results, fields) => {
       if (error) {
         return callback(error)
       }

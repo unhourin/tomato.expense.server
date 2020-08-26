@@ -183,4 +183,34 @@ module.exports = {
       }
     );
   },
+
+  getDataByYear: (employeeId, year, callback) => {
+    let startDate = moment([year])
+      .startOf("year")
+      .format("YYYY-MM-DD HH:mm:ss");
+    let endDate = moment([year]).endOf("year").format("YYYY-MM-DD HH:mm:ss");
+    pool.query(
+      SQL.getHistoryDataByYear,
+      [employeeId, startDate, endDate],
+      (err, results) => {
+        return callback(err, results);
+      }
+    );
+  },
+
+  getDefaultData: (employeeId, callback) => {
+    pool.query(SQL.getHistoryDefaultData, [employeeId], (err, results) => {
+      return callback(err, results);
+    });
+  },
+
+  getPastSixMonthCommuterPass: (employeeId, callback) => {
+    pool.query(
+      SQL.getPastSixMonthCommuterPass,
+      [employeeId],
+      (err, results) => {
+        return callback(err, results);
+      }
+    );
+  },
 };

@@ -1,21 +1,14 @@
-const { getUserByEmail } = require("../../api/users/user.service");
 const service = require("../Service/expenseService");
-var multer = require("multer");
 
 module.exports = {
   createExpense: (req, res, next) => {
     const tempList = req.body;
-    const email = req.get("email");
-    getUserByEmail(email, (err, results) => {
+    const employeeId = req.params.employeeId;
+    service.createExpense(employeeId, tempList, (err, results) => {
       if (err) {
         next(err);
       }
-      service.createExpense(results.employee_id, tempList, (err, results) => {
-        if (err) {
-          next(err);
-        }
-        res.json(results);
-      });
+      res.json(results);
     });
   },
 
@@ -102,6 +95,35 @@ module.exports = {
   getExpenseDataByIdAndMonth: (req, res, next) => {
     let { expenseId, month } = req.params;
     service.getExpenseDataByIdAndMonth(expenseId, month, (err, results) => {
+      if (err) {
+        next(err);
+      }
+      res.json(results);
+    });
+  },
+
+  getEmployeeHistory: (req, res, next) => {
+    let { employeeId, year } = req.params;
+    if (year == 0) {
+      service.getDefaultData(employeeId, (err, results) => {
+        if (err) {
+          next(err);
+        }
+        res.json(results);
+      });
+    } else {
+      service.getDataByYear(employeeId, year, (err, results) => {
+        if (err) {
+          next(err);
+        }
+        res.json(results);
+      });
+    }
+  },
+
+  getPastSixMonthCommuterPass: (req, res, next) => {
+    let { employeeId } = req.params;
+    service.getPastSixMonthCommuterPass(employeeId, (err, results) => {
       if (err) {
         next(err);
       }
